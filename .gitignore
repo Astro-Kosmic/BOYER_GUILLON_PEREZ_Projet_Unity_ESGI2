@@ -1,0 +1,96 @@
+# ========== Unity Generated Files ==========
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# Avoid ignoring user-created builds in special folders
+# !Build/ for manually created build folder in Assets (rare)
+# Uncomment if needed
+# ![Bb]uild/
+
+# ========== Asset Store Tools ==========
+[Aa]ssetStoreTools*
+
+# ========== Auto-generated files ==========
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Rider / JetBrains
+.idea/
+*.DotSettings.user
+
+# Visual Studio
+.vs/
+
+# ========== Unity Meta Files (keep these) ==========
+# Do NOT ignore *.meta
+!*.meta
+
+# ========== Crash Reports & Misc ==========
+sysinfo.txt
+
+# ========== Builds ==========
+*.apk
+*.aab
+*.app
+*.ipa
+*.exe
+*.zip
+
+# ========== OS-specific ==========
+# Windows
+Thumbs.db
+[Dd]esktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# ========== Logs ==========
+*.log
+
+# ========== Package Manager ==========
+# If using UPM embedded packages, don't ignore Packages/*
+# but ignore cache:
+[Pp]ackages/*/packagecache/
+
+# ========== Addressables ==========
+# Ignore generated addressables data
+# (optional: comment out if versioning addressables)
+AddressableAssetsData/*/BuildTarget*
+AddressableAssetsData/link.xml
+
+# ========== TextMeshPro ==========
+[Tt]extMesh Pro/Resources/Font Settings/*.json
+
+# ========== Collaborate (obsolète) ==========
+.collabignore
+.collab/
+
+# ========== Unity Hub ==========
+# Sometimes created in the project folder
+UnityHub/
+
+# ========== Local environment ==========
+.env
+.env.*
