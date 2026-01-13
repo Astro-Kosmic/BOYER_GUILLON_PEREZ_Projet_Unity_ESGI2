@@ -1,0 +1,1 @@
+Création du README.md qui sera la documentation technique du projet.
