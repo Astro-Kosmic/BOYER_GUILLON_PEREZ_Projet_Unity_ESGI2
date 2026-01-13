@@ -20,12 +20,15 @@ public class WorldUIManager : MonoBehaviour
     {
         if (sideMenuPanel != null && sideMenuCanvasGroup != null)
         {
-            sideMenuPanel.SetActive(true);               // on le laisse dans la scène
-            sideMenuCanvasGroup.alpha = 0f;              // invisible
-            sideMenuCanvasGroup.interactable = false;    // pas cliquable
-            sideMenuCanvasGroup.blocksRaycasts = false;  // ne bloque pas la souris
+            sideMenuPanel.SetActive(true);               // Le panel existe, mais est invisible
+            sideMenuCanvasGroup.alpha = 0f;
+            sideMenuCanvasGroup.interactable = false;
+            sideMenuCanvasGroup.blocksRaycasts = false;
             sideMenuPanel.transform.localScale = closedScale;
             isMenuOpen = false;
+
+            // On s'assure que le jeu n'est pas en pause au démarrage
+            Time.timeScale = 1f;
         }
     }
 
@@ -43,6 +46,9 @@ public class WorldUIManager : MonoBehaviour
             return;
 
         isMenuOpen = !isMenuOpen;
+
+        // 🔹 Pause / reprise du jeu
+        Time.timeScale = isMenuOpen ? 0f : 1f;
 
         if (currentAnim != null)
             StopCoroutine(currentAnim);
@@ -67,7 +73,8 @@ public class WorldUIManager : MonoBehaviour
 
         while (elapsed < animationDuration)
         {
-            elapsed += Time.deltaTime;
+            // 🔹 IMPORTANT : on utilise le temps "non-scalé"
+            elapsed += Time.unscaledDeltaTime;
             float t = elapsed / animationDuration;
             t = Mathf.SmoothStep(0f, 1f, t);
 
@@ -92,10 +99,12 @@ public class WorldUIManager : MonoBehaviour
     // Bouton "Retour Menu"
     public void OnBackToMenuClicked()
     {
+        // On remet le temps à la normale avant de changer de scène
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void OnDevmondexClicked()
+    public void OnPokedexClicked()
     {
         Debug.Log("Ouverture du DevMonDex (TODO)");
     }
@@ -108,6 +117,6 @@ public class WorldUIManager : MonoBehaviour
     public void OnBagClicked()
     {
         Debug.Log("Ouverture du Sac à Dos (TODO)");
+        // Plus tard : SceneManager.LoadScene("Backpack");
     }
 }
-
