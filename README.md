@@ -1,185 +1,198 @@
-# 🎮 DEVMON
+# 🎮 DevMon — Documentation du Projet
 
-## 👤 Auteur(s)
-
-- **Adrien GUILLON – Clément BOYER – Lucas PEREZ**
-- Rôles : Développeurs Unity / UI Designer / Level Designer
-- Liens : [Dépôt GitHub](https://github.com/Astro-Kosmic/BOYER_GUILLON_PEREZ_Projet_Unity_ESGI2)
-
----
-
-## # Description du projet
-
-**DevMon** est un mini-jeu Unity réalisé dans le cadre d’un projet scolaire (ESGI).  
-Le jeu s’inspire des mécaniques de type RPG / Pokémon-lite et inclut :
-
-- un **menu principal complet et stylisé**,  
-- une **scène de jeu** avec **HUD**,  
-- un **menu latéral animé** (ouverture via Échap),  
-- une **navigation multi-scènes**,  
-- un début de **système d’inventaire** (Scène Sac à Dos).
-
-Projet réalisé en **3 jours** dans le cadre du module Unity.
+##  Équipe
+**Clément BOYER – Adrien GUILLON – Lucas PEREZ**  
+Projet Unity — ESGI2 Campus Éductive  
+Trimestre 1 – 2025/2026
 
 ---
 
-## 1. Structure du Projet
+#  1. Concept du jeu
+
+> *“Dans un monde dominé par le NoCode, vous êtes l’un des derniers vrais développeurs. Capturez les DevMon, des créatures nées des langages de programmation, collectionnez les 8 Écussons du Code et affrontez C-lermo, maître du Bas Niveau.”*
+
+La démo présente les premières mécaniques du jeu :  
+- Exploration libre  
+- Interactions avec l’environnement  
+- Collecte d'objets  
+- Navigation entre plusieurs scènes
+
+---
+
+#  2. Création de la carte
+
+##  Terrain & Relief
+Pour structurer la carte, l’équipe a utilisé l’outil **Terrain** natif de Unity :
+
+- Sculpture du relief global  
+- Création d’une chaîne de montagnes pour fermer la zone de jeu  
+- Traçage manuel des chemins  
+- Organisation progressive de la carte pour assurer lisibilité et cohérence  
+
+L’objectif était d’obtenir un environnement naturel, jouable et cohérent.
+
+##  Habillage visuel
+Le terrain a été habillé avec :
+
+- **Textures Fantasy Forest** pour le sol  
+- **LowPoly Tree** pour les arbres  
+- **Textures rocheuses Rock01** peintes manuellement  
+- **Terrain Tools** pour dessiner le chemin  
+- Sculptures fines des reliefs pour les contraintes de gameplay  
+
+Les textures ont été configurées pour garantir un rendu propre (Filter Mode : *Point*, Wrap : *Repeat*).
+
+##  Objets & Prefabs
+Les assets extérieurs proviennent des packages suivants :
+
+- *Fantasy Forest*  
+- *Meadow Forest*  
+- *LowPoly Tree*
+
+Tous les éléments importants (arbres, maisons, lanternes…) ont été convertis en **prefabs** pour :  
+✔ créer des motifs (patterns) cohérents  
+✔ accélérer la mise en scène  
+✔ garder un placement homogène
+
+---
+
+#  3. Joueur & Interactions
+
+##  Sprite & déplacements
+Le joueur utilise un sprite 2D animé provenant d’un package externe.  
+Il permet une intégration simple de l’interaction avec le décor.
+
+##  Système d’interaction
+Le projet inclut notamment :
+
+### 🔹 PNJ interactif
+Lorsqu’un Player entre dans la zone du PNJ :  
+- Le PNJ détecte le joueur via son trigger  
+- Il stoppe sa patrouille  
+- Il passe en **mode poursuite**  
+- Il freeze le joueur via son script de mouvement  
+- Un message debug signale l’événement
+
+### 🔹 Collecte d’écussons
+L’objet *écusson* utilise :
+- Un mouvement de **rotation**  
+- Une **lévitation sinusoïdale**  
+- Un **Collider trigger**  
+- Une interaction via la **touche E**  
+
+Lorsque le joueur valide :
+- Le compteur de l’UI s’incrémente  
+- L’objet disparaît proprement
+
+Scripts utilisés :  
+- `CollectEcusson.cs`  
+- `PlayerMovement.cs`  
+- `NpcAI.cs`
+
+---
+
+#  4. Création des Interfaces
+
+##  Menu Principal
+Contient :
+- Fond illustré  
+- Bouton **Play** → MainWorld  
+- Bouton **Exit** → Quitte le jeu  
+
+Géré par `MainMenuManager.cs`.
+
+##  HUD (Head‑Up Display)
+Affiche :
+- La **zone actuelle**  
+- Le **compteur d’écussons**  
+- Un menu latéral regroupant :  
+  - DevMonDex  
+  - Équipe  
+  - Sac à Dos  
+  - Retour Menu
+
+Animations UI gérées avec **CanvasGroup** + **coroutines**.
+
+---
+
+#  5. Difficultés rencontrées
+
+## ⚠️ Limites techniques
+Manque d’expérience avec Unity et C#, rendant difficile la prise de recul et la structuration technique du projet.
+
+## ⚠️ Travail collaboratif & Merge
+Malgré une organisation réfléchie, le **merge final** des branches fut l’étape la plus anxiogène du projet :  
+conflits Git, incohérences, fichiers d’éditeur corrompus.
+
+## ⚠️ Calibrage & Placement
+Le placement des éléments (maisons, arbres, colliders) a nécessité :  
+- Beaucoup d’essais/erreurs  
+- Consultation fréquente de la documentation  
+- Recours à des tutoriels et à l’IA
+
+## ⚠️ Complexité bicéphale
+Difficulté à progresser simultanément sur :  
+- La programmation orientée objet  
+- La modélisation 3D  
+
+---
+
+#  6. Axes d’amélioration
+
+### ✔️ Meilleure organisation
+- Comprendre plus tôt l’architecture du projet  
+- Mieux gérer les branches Git et les fusions  
+
+### ✔️ Recul extérieur
+- Tester plus tôt les mécaniques  
+- Faire tester le jeu pour identifier ce qui n’est pas intuitif  
+
+### ✔️ Apprentissage technique
+- Approfondir C# orienté objet  
+- Mieux maîtriser Unity (cycle de vie, scènes, prefabs…)  
+
+### ✔️ Plus de pratique
+- Réaliser des mini‑projets pour gagner en expérience  
+- Prototyper avant de développer un système complet  
+
+---
+
+#  7. Architecture du projet
 
 ```
 /Assets
     /Scripts
+        /Items
+            CollectEcusson.cs
+        /Player
+            PlayerMovement.cs
+            CameraFollow.cs
+        /PNJ
+            NpcAI.cs
         /UI
             MainMenuManager.cs
             WorldUIManager.cs
-            BackpackUIManager.cs
-        /Player
-        /Managers
-    /Scenes
-        /Menus
-            MainMenu.unity
-        /Game
-            MainWorld.unity
-            Backpack.unity
     /Prefabs
     /Materials
-    /Animations
-    /Audio
-    /UI
-    /Images
-/Packages
-/ProjectSettings
+    /Scenes
+        MainMenu.unity
+        MainWorld.unity
+        Backpack.unity
 ```
 
 ---
 
-## 2. Fonctionnalités Principales
-
-### ✔️ Fonctionnalités terminées
-- [x] **Menu principal stylisé** (fond, logo, boutons animés)
-- [x] **Navigation Play / Quit**
-- [x] **Scène MainWorld opérationnelle**
-  - HUD supérieur (zone actuelle)
-  - Menu latéral (DevMonDex / Équipe / Sac à Dos / Retour)
-  - Animation d’apparition / disparition du menu (CanvasGroup + Scale)
-  - Ouverture / fermeture via **Échap**
-- [x] **Scène Sac à Dos (Backpack)**  
-  - Scène dédiée  
-  - Barre supérieure  
-  - Bouton Retour → MainWorld  
-
-### ⬜ Fonctionnalités à venir
-- [ ] Déplacement du joueur
-- [ ] Caméra follow (Cinemachine ou custom)
-- [ ] Gestion des collisions
-- [ ] DevMonDex (scène ou panel)
-- [ ] Système d’inventaire complet (objets, quantités)
-- [ ] IA basique (PNJ qui s’approche du joueur)
-- [ ] Audio (musique + SFX)
-- [ ] Sauvegarde / chargement
-- [ ] Système de progression / stats
-
----
-
-## 3. Scènes du Projet
-
-| Scène        | Description |
-|--------------|-------------|
-| **MainMenu** | Menu principal (Play / Quit) |
-| **MainWorld** | Scène de jeu principale (HUD + menu latéral) |
-| **Backpack** | Scène du Sac à Dos (inventaire) |
-
----
-
-## 4. Installation & Lancement
-
-### a. Cloner le repository
-```bash
-git clone https://github.com/Astro-Kosmic/BOYER_GUILLON_PEREZ_Projet_Unity_ESGI2
-```
-
-### b. Version Unity requise
-```
-Unity 6.x (6000.2 LTS)
-```
-
-### c. Ouvrir le projet
-1. Ouvrir Unity Hub  
-2. Cliquer sur **Add project from disk**  
-3. Sélectionner le dossier du projet
-
----
-
-## 5. Tests & Débogage
-
-- Ouvrir la scène **MainMenu** ou **MainWorld**
-- Appuyer sur **Play**
-- Contrôles actuels :
-  - `Échap` : ouvrir / fermer le menu latéral
-- Navigation :
-  - Play → MainWorld  
-  - Menu latéral → Sac à Dos → Retour → MainWorld
-  - Retour Menu → MainMenu
-- Surveiller la **Console Unity** pour les logs
-
----
-
-## 6. Organisation du Code
+#  8. Lancement
 
 ```
-/Scripts
-    /UI
-        MainMenuManager.cs       # Gère Play / Quit
-        WorldUIManager.cs        # Gestion du HUD et menu latéral
-        BackpackUIManager.cs     # Gestion du retour depuis Backpack
-    /Player
-    /Enemies
-    /Managers
-    /Utilities
+Unity 6.x — 6000.2 LTS
 ```
 
-Principes :
-- Organisation claire par rôle
-- UI séparée dans des scripts dédiés
-- Utilisation du CanvasGroup pour les animations UI
-- Structure pensée pour étendre facilement (DevMonDex, Inventaire…)
+1. Ouvrir le projet dans **Unity Hub**  
+2. Lancer la scène `MainMenu`  
+3. Tester le menu, la collecte et les interactions
 
 ---
 
-## 7. Technologies & Packages utilisés
-
-- Unity **6.x (6000.2 LTS)**  
-- TextMeshPro  
-- EventSystem UI  
-- Image UI (sprites personnalisés)  
-- New Input System (mode Both activé pour compatibilité Escape)  
-- Futur : Cinemachine, ScriptableObjects, AudioMixer
-
----
-
-## 8. Build
-
-1. Ouvrir **File → Build Profiles**
-2. Vérifier que les scènes suivantes sont listées :
-   - `MainMenu`
-   - `MainWorld`
-   - `Backpack`
-3. Cliquer sur **Build**
-
----
-
-## 9. Licence
-
-```
-Projet scolaire – diffusion interne.
-```
-
----
-
-## 10. Notes supplémentaires
-
-- TODO :
-  - Ajouter le gameplay du joueur
-  - Ajouter un PNJ avec comportement
-  - Créer DevMonDex / Équipe
-  - Ajouter des objets récupérables dans la nature
-  - Styliser davantage les interfaces (icônes, animations)
+#  Licence
+Projet scolaire • Usage interne ESGI
