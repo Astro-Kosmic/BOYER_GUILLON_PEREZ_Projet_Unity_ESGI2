@@ -6,7 +6,7 @@ public class MainMenuUIManager : MonoBehaviour
 {
     public void OnPlayButtonClicked()
     {
-        SceneManager.LoadScene("MainWorld");
+        SceneManager.LoadScene("WorldMap");
     }
 
     public void OnQuitButtonClicked()
