@@ -4,6 +4,7 @@
 **Clément BOYER – Adrien GUILLON – Lucas PEREZ**  
 Projet Unity — ESGI2 Campus Éductive  
 Trimestre 1 – 2025/2026
+Lien de la présentation Canva : https://www.canva.com/design/DAG-bBX2Gfs/TAVSsB_s-yRITN6TqD8iAg/edit?utm_content=DAG-bBX2Gfs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ---
 
