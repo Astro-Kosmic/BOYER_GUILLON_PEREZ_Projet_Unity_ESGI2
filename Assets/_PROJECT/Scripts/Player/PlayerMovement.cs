@@ -1,99 +1,105 @@
 ﻿using UnityEngine;
+using _PROJECT.Scripts.Items; // Requis pour accéder à CollectEcusson
 
-[RequireComponent(typeof(Rigidbody))]
-public class PlayerMovement : MonoBehaviour
+namespace _PROJECT.Scripts.Player
 {
-    [Header("Déplacement")]
-    [SerializeField] private float walkSpeed = 5f;
-    [SerializeField] private float sprintSpeed = 9f;
-    [SerializeField] private float smoothTime = 0.1f;
-
-    [Header("Interaction")]
-    [SerializeField] private float interactRange = 2f;
-    [SerializeField] private LayerMask interactableLayer;
-
-    private Rigidbody rb;
-    private Animator anim;
-    private Vector3 movement;
-    private bool isFrozen = false;
-
-    void Start()
+    [RequireComponent(typeof(Rigidbody))]
+    public class PlayerMovement : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-        // Récupère l'animateur sur l'enfant "Visual"
-        anim = GetComponentInChildren<Animator>();
-        
-        // Sécurité : Vérifie les contraintes du Rigidbody
-        rb.freezeRotation = true; 
-    }
+        [Header("Déplacement")]
+        [SerializeField] private float walkSpeed = 5f;
+        [SerializeField] private float sprintSpeed = 9f;
 
-    void Update()
-    {
-        // Si le menu est actif ou si un PNJ nous freeze
-        if (isFrozen) 
+        [Header("Interaction")]
+        [SerializeField] private float interactRange = 2f;
+        [SerializeField] private LayerMask interactableLayer;
+
+        private Rigidbody _rb;
+        private Animator _anim;
+        private Vector3 _movement;
+        private bool _isFrozen;
+
+        // Optimisation des IDs de l'Animator
+        private static readonly int MoveX = Animator.StringToHash("MoveX");
+        private static readonly int MoveY = Animator.StringToHash("MoveY");
+        private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+
+        private readonly Collider[] _hitResults = new Collider[5];
+
+        private void Start()
         {
-            StopMovement();
-            return;
+            _rb = GetComponent<Rigidbody>();
+            _anim = GetComponentInChildren<Animator>();
+            _rb.freezeRotation = true;
         }
 
-        HandleInput();
-        HandleInteraction();
-    }
-
-    private void HandleInput()
-    {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveZ = Input.GetAxisRaw("Vertical"); // Z est la profondeur en 3D
-        movement = new Vector3(moveX, 0f, moveZ).normalized;
-
-        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
-
-        if (movement.magnitude > 0.1f)
+        private void Update()
         {
-            rb.linearVelocity = new Vector3(movement.x * currentSpeed, rb.linearVelocity.y, movement.z * currentSpeed);
-        
-            if (anim != null) 
+            if (_isFrozen) 
             {
-                // Correction : On envoie les axes X et Z aux paramètres MoveX et MoveY de l'Animator
-                anim.SetFloat("MoveX", moveX);
-                anim.SetFloat("MoveY", moveZ); 
-                anim.SetBool("IsMoving", true);
+                StopMovement();
+                return;
             }
 
-            // Optionnel : Inversion du sprite si vous n'avez pas d'anim Gauche/Droite distinctes
-            if (moveX != 0) GetComponentInChildren<SpriteRenderer>().flipX = moveX > 0;
+            HandleInput();
+            HandleInteraction();
         }
-        else
-        {
-            StopMovement();
-        }
-    }
 
-    private void HandleInteraction()
-    {
-        // Déclenche l'interaction avec la touche E
-        if (Input.GetKeyDown(KeyCode.E))
+        private void HandleInput()
         {
-            Collider[] targets = Physics.OverlapSphere(transform.position, interactRange, interactableLayer);
-            foreach (var target in targets)
+            float moveX = Input.GetAxisRaw("Horizontal");
+            float moveZ = Input.GetAxisRaw("Vertical");
+            _movement = new Vector3(moveX, 0f, moveZ).normalized;
+
+            float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
+
+            if (_movement.magnitude > 0.1f)
             {
-                Debug.Log("Objet ramassé : " + target.name);
-                // Logique pour détruire l'objet ou l'ajouter à l'inventaire
-                // Destroy(target.gameObject);
+                _rb.linearVelocity = new Vector3(_movement.x * currentSpeed, _rb.linearVelocity.y, _movement.z * currentSpeed);
+            
+                if (_anim != null) 
+                {
+                    _anim.SetFloat(MoveX, moveX);
+                    _anim.SetFloat(MoveY, moveZ); 
+                    _anim.SetBool(IsMoving, true);
+                }
+
+                if (moveX != 0) GetComponentInChildren<SpriteRenderer>().flipX = moveX > 0;
+            }
+            else
+            {
+                StopMovement();
             }
         }
-    }
 
-    private void StopMovement()
-    {
-        rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
-        if (anim != null) anim.SetFloat("Speed", 0f);
-    }
+        private void HandleInteraction()
+        {
+            // Ramassage manuel avec la touche E
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                int numColliders = Physics.OverlapSphereNonAlloc(transform.position, interactRange, _hitResults, interactableLayer);
+                
+                for (int i = 0; i < numColliders; i++)
+                {
+                    if (_hitResults[i].TryGetComponent<CollectEcusson>(out var ecusson))
+                    {
+                        ecusson.Collect();
+                        break;
+                    }
+                }
+            }
+        }
 
-    // Fonction publique pour freezer le perso depuis un autre script (PNJ ou Menu)
-    public void SetFreeze(bool state)
-    {
-        isFrozen = state;
-        if (state) StopMovement();
+        private void StopMovement()
+        {
+            _rb.linearVelocity = new Vector3(0f, _rb.linearVelocity.y, 0f);
+            if (_anim != null) _anim.SetBool(IsMoving, false);
+        }
+
+        public void SetFreeze(bool state)
+        {
+            _isFrozen = state;
+            if (state) StopMovement();
+        }
     }
 }

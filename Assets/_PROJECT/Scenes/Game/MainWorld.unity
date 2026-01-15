@@ -444,6 +444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_WorldRoot
       objectReference: {fileID: 0}
+    - target: {fileID: 6347243501855719393, guid: 5e2c5b6a2dcb5f34cbb127eb8bad3819, type: 3}
+      propertyPath: m_Name
+      value: EcussonCount
+      objectReference: {fileID: 0}
     - target: {fileID: 7990718947554991647, guid: 5e2c5b6a2dcb5f34cbb127eb8bad3819, type: 3}
       propertyPath: m_LocalPosition.x
       value: 109.05201

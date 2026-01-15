@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using TMPro;
 
 // Correction du Namespace pour correspondre au dossier physique
 namespace _PROJECT.Scripts.UI
@@ -14,6 +15,20 @@ namespace _PROJECT.Scripts.UI
         // "Suggested name is '_isMenuOpen'"
         // "Initializing field by default value is redundant" (false par défaut)
         private bool _isMenuOpen;
+        
+        [Header("Collectibles")]
+        [SerializeField] private TextMeshProUGUI ecussonText;        private int _ecussonCount;
+
+// Ajoutez cette méthode pour gérer l'incrémentation
+        public void AddEcusson()
+        {
+            _ecussonCount++;
+            if (ecussonText != null)
+            {
+                // Formatage "Écussons : 000" conforme à votre UI
+                ecussonText.text = $"Écussons : {_ecussonCount:D3}";
+            }
+        }
         
         // "Suggested name is '_currentAnim'"
         private Coroutine _currentAnim;

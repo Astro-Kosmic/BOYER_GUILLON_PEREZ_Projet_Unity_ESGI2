@@ -1,7 +1,9 @@
 using UnityEngine;
 using System.Collections;
+using _PROJECT.Scripts.Player;
 
 namespace _PROJECT.Scripts.PNJ
+
 {
     // Le nom de la classe est maintenant NpcAI pour correspondre au nom du fichier NpcAI.cs
     public class NpcAI : MonoBehaviour
