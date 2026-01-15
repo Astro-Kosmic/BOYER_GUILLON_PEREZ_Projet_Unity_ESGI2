@@ -6127,9 +6127,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3061751396314577413, guid: 8da5ee344692ffb4b88cf38a2c2976f9, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 3917648110282950074, guid: 8da5ee344692ffb4b88cf38a2c2976f9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1042077321}
+      addedObject: {fileID: 1353749362}
   m_SourcePrefab: {fileID: 100100000, guid: 8da5ee344692ffb4b88cf38a2c2976f9, type: 3}
 --- !u!1001 &618142547
 PrefabInstance:
@@ -7584,9 +7584,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3061751396314577413, guid: 8da5ee344692ffb4b88cf38a2c2976f9, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 3917648110282950074, guid: 8da5ee344692ffb4b88cf38a2c2976f9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 775015972}
+      addedObject: {fileID: 1563523677}
   m_SourcePrefab: {fileID: 100100000, guid: 8da5ee344692ffb4b88cf38a2c2976f9, type: 3}
 --- !u!1001 &761625369
 PrefabInstance:
@@ -7776,24 +7776,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6811003841409299756, guid: 2a39d917b75b98af38c945754eb73a24, type: 3}
   m_PrefabInstance: {fileID: 1633176649}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &775015971 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3061751396314577413, guid: 8da5ee344692ffb4b88cf38a2c2976f9, type: 3}
-  m_PrefabInstance: {fileID: 759604719}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &775015972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775015971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f5ae3f5c147d86488f8480ed8166c2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_PROJECT.Scripts.CollectEcusson
-  rotationSpeed: 100
 --- !u!1001 &775134437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10088,6 +10070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_PROJECT.Scripts.CollectEcusson
   rotationSpeed: 100
+  interactionKey: 101
 --- !u!1001 &985652459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10752,24 +10735,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6811003841409299756, guid: 2a39d917b75b98af38c945754eb73a24, type: 3}
   m_PrefabInstance: {fileID: 1041670955}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1042077319 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3061751396314577413, guid: 8da5ee344692ffb4b88cf38a2c2976f9, type: 3}
-  m_PrefabInstance: {fileID: 617668855}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1042077321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042077319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f5ae3f5c147d86488f8480ed8166c2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_PROJECT.Scripts.CollectEcusson
-  rotationSpeed: 100
 --- !u!4 &1047041037 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6811003841409299756, guid: 2a39d917b75b98af38c945754eb73a24, type: 3}
@@ -13508,6 +13473,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c2554c9f74a00fe4181212add5bb6bde, type: 3}
   m_PrefabInstance: {fileID: 111081929}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1353749357 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3917648110282950074, guid: 8da5ee344692ffb4b88cf38a2c2976f9, type: 3}
+  m_PrefabInstance: {fileID: 617668855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1353749362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353749357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5ae3f5c147d86488f8480ed8166c2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_PROJECT.Scripts.Items.CollectEcusson
+  rotationSpeed: 100
+  interactionKey: 101
 --- !u!1001 &1357129732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15365,6 +15349,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6811003841409299756, guid: 2a39d917b75b98af38c945754eb73a24, type: 3}
   m_PrefabInstance: {fileID: 208912228}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1563523672 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3917648110282950074, guid: 8da5ee344692ffb4b88cf38a2c2976f9, type: 3}
+  m_PrefabInstance: {fileID: 759604719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1563523677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563523672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5ae3f5c147d86488f8480ed8166c2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_PROJECT.Scripts.Items.CollectEcusson
+  rotationSpeed: 100
+  interactionKey: 101
 --- !u!1001 &1570402291
 PrefabInstance:
   m_ObjectHideFlags: 0

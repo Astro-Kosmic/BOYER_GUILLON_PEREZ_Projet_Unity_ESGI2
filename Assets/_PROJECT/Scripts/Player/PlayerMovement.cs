@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using _PROJECT.Scripts.Items; // Requis pour accéder à CollectEcusson
+using _PROJECT.Scripts.Items; // Import du namespace de la pièce
 
 namespace _PROJECT.Scripts.Player
 {
@@ -11,19 +11,19 @@ namespace _PROJECT.Scripts.Player
         [SerializeField] private float sprintSpeed = 9f;
 
         [Header("Interaction")]
-        [SerializeField] private float interactRange = 2f;
-        [SerializeField] private LayerMask interactableLayer;
+        [SerializeField] private float interactRange = 2f; // Distance de détection
+        [SerializeField] private LayerMask interactableLayer; // Doit être sur "Interaction"
 
         private Rigidbody _rb;
         private Animator _anim;
         private Vector3 _movement;
         private bool _isFrozen;
 
-        // Optimisation des IDs de l'Animator
         private static readonly int MoveX = Animator.StringToHash("MoveX");
         private static readonly int MoveY = Animator.StringToHash("MoveY");
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
 
+        // Optimisation : Tableau réutilisable pour éviter les allocations mémoire
         private readonly Collider[] _hitResults = new Collider[5];
 
         private void Start()
@@ -74,17 +74,19 @@ namespace _PROJECT.Scripts.Player
 
         private void HandleInteraction()
         {
-            // Ramassage manuel avec la touche E
+            // Déclenchement par touche
             if (Input.GetKeyDown(KeyCode.E))
             {
+                // Détecte les objets sur le Layer spécifique dans un rayon défini
                 int numColliders = Physics.OverlapSphereNonAlloc(transform.position, interactRange, _hitResults, interactableLayer);
                 
                 for (int i = 0; i < numColliders; i++)
                 {
+                    // Vérifie la présence du script CollectEcusson sur l'objet touché
                     if (_hitResults[i].TryGetComponent<CollectEcusson>(out var ecusson))
                     {
                         ecusson.Collect();
-                        break;
+                        break; // On ne ramasse qu'un objet à la fois
                     }
                 }
             }
